@@ -3,13 +3,15 @@ package com.example.sampleviewpager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.viewpager.widget.PagerAdapter
 import java.util.*
 
-class ViewPagerAdapter : PagerAdapter() {
+class FragmentViewPagerAdapter(fragmentManager: FragmentManager) : SmartFragmentStatePagerAdapter(fragmentManager) {
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val item = LayoutInflater.from(container.context).inflate(if (position == count - 1) R.layout.al else R.layout.li, container, false)
+
         container.addView(item)
         return item
 

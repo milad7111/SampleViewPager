@@ -1,5 +1,6 @@
 package com.example.sampleviewpager;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -11,7 +12,7 @@ import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements PlusOneFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +27,10 @@ public class MainActivity extends AppCompatActivity {
         WormDotsIndicator wormDotsIndicator = findViewById(R.id.worm_dots_indicator);
 
         ViewPager viewPager = findViewById(R.id.view_pager);
-        ViewPagerAdapter adapter = new ViewPagerAdapter();
-        viewPager.setAdapter(adapter);
+//        ViewPagerAdapter adapter = new ViewPagerAdapter();
+        cbbcbn madapter = new cbbcbn(getSupportFragmentManager());
+        viewPager.setOffscreenPageLimit(2);
+        viewPager.setAdapter(madapter);
         viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -49,5 +52,10 @@ public class MainActivity extends AppCompatActivity {
 //        dotsIndicator.setViewPager(viewPager);
 //        springDotsIndicator.setViewPager(viewPager);
         wormDotsIndicator.setViewPager(viewPager);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
